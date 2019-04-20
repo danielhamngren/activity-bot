@@ -3,10 +3,11 @@ const utils = require("./utils");
 
 const PORT = process.env.PORT || 3000;
 const URL = process.env.URL || "https://super-activity-bot.herokuapp.com/";
+const BOT_TOKEN = process.env.BOT_TOKEN;
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
-expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+const bot = new Telegraf(BOT_TOKEN);
+bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
+expressApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
 
 const should_send_to_db = true;
 
