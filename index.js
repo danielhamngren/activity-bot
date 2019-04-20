@@ -8,8 +8,7 @@ const URL = process.env.URL || "https://super-activity-bot.herokuapp.com/";
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
 const bot = new Telegraf(BOT_TOKEN);
-bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
-expressApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
+bot.startPolling();
 
 const should_send_to_db = true;
 
