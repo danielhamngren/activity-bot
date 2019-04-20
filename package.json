@@ -1,0 +1,18 @@
+{
+  "name": "activity-bot",
+  "version": "0.1.0",
+  "description": "Saves activities when chatting to you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "author": "Daniel Hamngren",
+  "license": "MIT",
+  "dependencies": {
+    "emoji-regex": "^8.0.0",
+    "express": "^4.16.4",
+    "mocha": "^6.1.4",
+    "pg": "^7.10.0",
+    "telegraf": "^3.29.0"
+  }
+}
