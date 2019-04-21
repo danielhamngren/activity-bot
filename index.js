@@ -43,9 +43,9 @@ bot.launch({
   }
 });
 
-// expressApp.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
-// expressApp.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+expressApp.get("/", (req, res) => {
+  res.send("This is not the page you are looking for!");
+});
+expressApp.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
