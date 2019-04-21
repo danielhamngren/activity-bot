@@ -35,13 +35,14 @@ bot.hears(/./, ctx => {
   ctx.reply("ok");
 });
 
-bot.launch({
-  webhook: {
-    domain: URL,
-    hookPath: "/RANDOM_ID",
-    port: PORT
-  }
-});
+// bot.launch({
+//   webhook: {
+//     domain: URL,
+//     hookPath: "/RANDOM_ID",
+//     port: PORT
+//   }
+// });
+bot.launch();
 
 expressApp.get("/", (req, res) => {
   res.send("This is not the page you are looking for!");
