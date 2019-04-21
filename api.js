@@ -30,3 +30,5 @@ app.get("/user/:user_id", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Activity app listening on port ${PORT}!`));
+
+module.exports = app;

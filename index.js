@@ -1,6 +1,6 @@
 const Telegraf = require("telegraf");
 const utils = require("./utils");
-require("./api"); //starts the api express endpoint
+var apiApp = require("./api"); //starts the api express endpoint
 const express = require("express");
 
 const PORT = process.env.PORT || 3000;
@@ -9,6 +9,15 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const RUN_LOCAL = process.env.RUN_LOCAL;
 
 const bot = new Telegraf(BOT_TOKEN);
+
+if (RUN_LOCAL === "TRUE") {
+  console.log("Running locally");
+  bot.launch();
+} else {
+  console.log("Running live");
+  apiApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
+  bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
+}
 
 const should_send_to_db = true;
 
@@ -31,17 +40,3 @@ bot.hears(/./, ctx => {
 
   ctx.reply("ok");
 });
-
-if (RUN_LOCAL === "TRUE") {
-  console.log("Running locally");
-  bot.launch();
-} else {
-  console.log("Running live");
-  bot.launch({
-    webhook: {
-      domain: URL,
-      hookPath: `/bot${BOT_TOKEN}`,
-      port: PORT
-    }
-  });
-}
