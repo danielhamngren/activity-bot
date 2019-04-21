@@ -8,8 +8,8 @@ const URL = process.env.URL || "super-activity-bot.herokuapp.com";
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
 const bot = new Telegraf(BOT_TOKEN);
-bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
-expressApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
+// bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
+// expressApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
 
 // bot.startPolling();
 
@@ -44,9 +44,9 @@ bot.launch({
 });
 // bot.launch();
 
-expressApp.get("/", (req, res) => {
-  res.send("This is not the page you are looking for!");
-});
-expressApp.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// expressApp.get("/", (req, res) => {
+//   res.send("This is not the page you are looking for!");
+// });
+// expressApp.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
