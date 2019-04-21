@@ -1,17 +1,13 @@
 const Telegraf = require("telegraf");
 const utils = require("./utils");
 const express = require("express");
-const expressApp = express();
 
 const PORT = process.env.PORT || 3000;
 const URL = process.env.URL || "super-activity-bot.herokuapp.com";
 const BOT_TOKEN = process.env.BOT_TOKEN;
+const RUN_LOCAL = process.env.RUN_LOCAL;
 
 const bot = new Telegraf(BOT_TOKEN);
-// bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
-// expressApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
-
-// bot.startPolling();
 
 const should_send_to_db = true;
 
@@ -35,18 +31,17 @@ bot.hears(/./, ctx => {
   ctx.reply("ok");
 });
 
-bot.launch({
-  webhook: {
-    domain: URL,
-    hookPath: `/bot${BOT_TOKEN}`,
-    port: PORT
-  }
-});
-// bot.launch();
-
-// expressApp.get("/", (req, res) => {
-//   res.send("This is not the page you are looking for!");
-// });
-// expressApp.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+console.log("RUN_LOCAL");
+if (RUN_LOCAL === "TRUE") {
+  console.log("Running locally");
+  bot.launch();
+} else {
+  console.log("Running live");
+  bot.launch({
+    webhook: {
+      domain: URL,
+      hookPath: `/bot${BOT_TOKEN}`,
+      port: PORT
+    }
+  });
+}
