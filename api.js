@@ -15,7 +15,6 @@ app.use(function(req, res, next) {
 app.get("/", (req, res) => {
   user_id = 1;
   utils.get_activity_table(user_id, result => {
-    console.log(req);
     res.send(result);
   });
 });
