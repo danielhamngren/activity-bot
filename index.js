@@ -1,5 +1,6 @@
 const Telegraf = require("telegraf");
 const utils = require("./utils");
+require("./api"); //starts the api express endpoint
 const express = require("express");
 
 const PORT = process.env.PORT || 3000;
@@ -31,7 +32,6 @@ bot.hears(/./, ctx => {
   ctx.reply("ok");
 });
 
-console.log("RUN_LOCAL");
 if (RUN_LOCAL === "TRUE") {
   console.log("Running locally");
   bot.launch();
