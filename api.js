@@ -1,7 +1,7 @@
 const express = require("express");
 const utils = require("./utils");
 const app = express();
-const port = 3000;
+const PORT = process.env.API_PORT || 3000;
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -29,4 +29,4 @@ app.get("/user/:user_id", (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Activity app listening on port ${port}!`));
+app.listen(PORT, () => console.log(`Activity app listening on port ${PORT}!`));

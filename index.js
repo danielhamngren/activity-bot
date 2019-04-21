@@ -4,11 +4,14 @@ const express = require("express");
 const expressApp = express();
 
 const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || "https://super-activity-bot.herokuapp.com/";
+const URL = process.env.URL || "super-activity-bot.herokuapp.com";
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
 const bot = new Telegraf(BOT_TOKEN);
-bot.startPolling();
+bot.telegram.setWebhook(`${URL}/bot${BOT_TOKEN}`);
+expressApp.use(bot.webhookCallback(`/bot${BOT_TOKEN}`));
+
+// bot.startPolling();
 
 const should_send_to_db = true;
 
@@ -32,11 +35,17 @@ bot.hears(/./, ctx => {
   ctx.reply("ok");
 });
 
-bot.launch();
+bot.launch({
+  webhook: {
+    domain: URL,
+    hookPath: "/RANDOM_ID",
+    port: PORT
+  }
+});
 
-expressApp.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-expressApp.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// expressApp.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
+// expressApp.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
