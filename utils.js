@@ -24,7 +24,7 @@ exports.get_activity_table = (user_id, callback) => {
 
   const query = {
     name: "get activities",
-    text: "SELECT * FROM activity WHERE user_id=$1",
+    text: "SELECT * FROM activity WHERE user_id=$1 ORDER BY datetime DESC",
     values: [user_id]
   };
 
